@@ -1,0 +1,18 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/bootstrap.min.css": "/css/bootstrap.min.css",
+    "/css/all.min.css": "/css/all.min.css",
+    "/css/dataTables.bootstrap4.css": "/css/dataTables.bootstrap4.css",
+    "/css/sb-admin.css": "/css/sb-admin.css",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
+    "/js/jquery.easing.min.js": "/js/jquery.easing.min.js",
+    "/js/Chart.min.js": "/js/Chart.min.js",
+    "/js/jquery.dataTables.js": "/js/jquery.dataTables.js",
+    "/js/dataTables.bootstrap4.js": "/js/dataTables.bootstrap4.js",
+    "/js/sb-admin.min.js": "/js/sb-admin.min.js",
+    "/js/datatables-demo.js": "/js/datatables-demo.js",
+    "/js/chart-bar-demo.js": "/js/chart-bar-demo.js",
+    "/js/create_link.min.js": "/js/create_link.min.js"
+}
