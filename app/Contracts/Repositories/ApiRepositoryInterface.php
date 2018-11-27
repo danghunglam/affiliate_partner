@@ -12,4 +12,6 @@ namespace App\Contracts\Repositories;
 interface ApiRepositoryInterface
 {
     public function updateCampaign(array $data);
+
+    public function upgradeCampaign(array $data);
 }

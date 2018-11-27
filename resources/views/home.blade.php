@@ -14,6 +14,27 @@
             </ol>
 
 
+            <div class="filter-order-date" style="margin-right: 20px">
+                <div class="order-date-form">
+                    <input id="filter_date_from" v-model="date_from" name="filter_date_from"  class="datepicker" type="button">
+                </div>
+                <span class="order-date-dash">-</span>
+                <div class="order-date-to">
+                    <input id="filter_date_to" v-model="date_to" name="filter_date_to"  class="datepicker" type="button">
+                </div>
+                <div class="filter-order-date-dropdown" @click="showFilterDatePicker">
+                    <span><i class="mdi mdi-chevron-down"></i></span>
+                </div>
+                <div id="filter-date-time-picker" style="padding-bottom: 20px" v-show="show_filter_date_picker">
+                    <div id="filter-date-time-picker-from"></div>
+                    <div id="filter-date-time-picker-to"></div>
+                    <div id="filter-date-time-apply">
+                        <button type="button" @click="filterOrdersDate">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+
 
             <div class="row">
                 <div class="col-lg-6">
@@ -22,30 +43,15 @@
                             <span>Unique clicks</span>
                             <span class="small text-muted" style="float: right">Last 30 days</span>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body unique-click">
                             <canvas id="unique_click" width="100%" height="50"></canvas>
                         </div>
                         <div class="card-header">
                             <div >TOP CAMPAIGNS</div>
 
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">default</a>
-                                <span style="float: right">446</span>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">webappdata</a>
-                                <span style="float: right">446</span>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">blogpost</a>
-                                <span style="float: right">446</span>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">webpage</a>
-                                <span style="float: right">446</span>
+                            <div v-if="topClicks" v-for="topClick in topClicks" class="col-lg-12 col-md-12">
+                                <a style="color: #0b58a2">@{{ topClick.campaign }}</a>
+                                <span style="float: right">@{{ topClick.total_click }}</span>
                             </div>
 
                         </div>
@@ -58,23 +64,17 @@
                             <span>Trial Signups</span>
                             <span class="small text-muted" style="float: right">Last 30 days</span>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body trial-signup">
                             <canvas id="trial_signup" width="100%" height="50"></canvas>
                         </div>
                         <div class="card-header">
                             <div >TOP CAMPAIGNS</div>
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">default</a>
-                                <span style="float: right">446</span>
+
+                            <div v-if="topTrials" v-for="topTrial in topTrials" class="col-lg-12 col-md-12">
+                                <a style="color: #0b58a2">@{{ topTrial.campaign }}</a>
+                                <span style="float: right">@{{ topTrial.total_store }}</span>
                             </div>
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">webappdata</a>
-                                <span style="float: right">446</span>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">blogpost</a>
-                                <span style="float: right">446</span>
-                            </div>
+
 
                         </div>
                     </div>
@@ -85,14 +85,14 @@
                             <span>Paid Conversions</span>
                             <span class="small text-muted" style="float: right">Last 30 days</span>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body paid-conversion">
                             <canvas id="paid_conversion" width="100%" height="50"></canvas>
                         </div>
                         <div class="card-header">
                             <div >TOP CAMPAIGNS</div>
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">default</a>
-                                <span style="float: right">446</span>
+                            <div v-if="topPaids" v-for="topPaid in topPaids" class="col-lg-12 col-md-12">
+                                <a style="color: #0b58a2">@{{ topPaid.campaign }}</a>
+                                <span style="float: right">@{{ topPaid.total_store }}</span>
                             </div>
                         </div>
                     </div>
@@ -103,14 +103,14 @@
                             <span>Earnings</span>
                             <span class="small text-muted" style="float: right">Last 30 days</span>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body earning">
                             <canvas id="earning" width="100%" height="50"></canvas>
                         </div>
                         <div class="card-header">
                             <div >TOP CAMPAIGNS</div>
-                            <div class="col-lg-12 col-md-12">
-                                <a style="color: #0b58a2">default</a>
-                                <span style="float: right">446</span>
+                            <div v-if="topEarnings" v-for="topEarning in topEarnings" class="col-lg-12 col-md-12">
+                                <a style="color: #0b58a2">@{{ topEarning.campaign }}</a>
+                                <span style="float: right">@{{ parseFloat(topEarning.total_earning).toFixed(2) }}</span>
                             </div>
                         </div>
                     </div>
@@ -136,41 +136,19 @@
                             </thead>
 
                             <tbody>
-                            <tr>
-                                <td>default</td>
-                                <td>446</td>
-                                <td>75</td>
-                                <td>16</td>
-                                <td>$641.50</td>
-                            </tr>
-                            <tr>
-                                <td>webappdata</td>
-                                <td>86</td>
-                                <td>1</td>
-                                <td>0</td>
-                                <td>$0.00</td>
-                            </tr>
-                            <tr>
-                                <td>blogpost</td>
-                                <td>60</td>
-                                <td>39</td>
-                                <td>0</td>
-                                <td>$0.00</td>
-                            </tr>
-                            <tr>
-                                <td>webpage</td>
-                                <td>17</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>$0.00</td>
-                            </tr>
 
-
+                            <tr v-if="all" v-for="item in all">
+                                <td>@{{ item.campaign }}</td>
+                                <td>@{{ item.click }}</td>
+                                <td>@{{ item.trial }}</td>
+                                <td>@{{ item.paid }}</td>
+                                <td>$@{{ item.earning }}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                {{--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>--}}
             </div>
 
         </div>
@@ -190,5 +168,6 @@
 
 @section('footer_extend')
     <script src="{{ mix('js/Chart.min.js') }}"></script>
-    <script src="{{ mix('js/chart-bar-demo.js') }}"></script>
+    {{--<script src="{{ mix('js/chart-bar-demo.js') }}"></script>--}}
+    <script src="{{ mix('js/home.min.js') }}"></script>
 @endsection

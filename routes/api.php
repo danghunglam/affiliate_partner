@@ -18,3 +18,4 @@
 //});
 
 Route::post('update_campaign','ApiController@updateCampaign')->name('update_campaign');
+Route::post('upgrade_campaign','ApiController@upgradeCampaign')->name('upgrade_campaign');

@@ -25,5 +25,7 @@ mix.js('resources/js/app.js', 'public/js')
     .copy('resources/bootstrap/js/sb-admin.min.js','public/js/sb-admin.min.js')
     .copy('resources/bootstrap/js/demo/datatables-demo.js','public/js/datatables-demo.js')
     .copy('resources/bootstrap/js/demo/chart-bar-demo.js','public/js/chart-bar-demo.js')
-    .copy('resources/js/create_link.js','public/js/create_link.min.js')
-   .sass('resources/sass/app.scss', 'public/css');
+    .js('resources/js/create_link.js','public/js/create_link.min.js')
+    .js('resources/js/home.js','public/js/home.min.js')
+   .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/_custom.scss', 'public/css/custom.min.css');

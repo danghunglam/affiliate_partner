@@ -33,10 +33,15 @@ class ApiController
      */
     public function updateCampaign( Request $request){
         $req = $request->all();
-        $data = $this->apiRepository->updateCampaign($req);
-        return response()->json($data);
+        $this->apiRepository->updateCampaign($req);
+        //return response()->json($data);
 //        $campaign = $data['utm_campaign'];
 //        $medium = $data['utm_medium'];
 //        $source = $data['utm_source'];
+    }
+    public function upgradeCampaign( Request $request){
+        $req = $request->all();
+        $this->apiRepository->upgradeCampaign($req);
+//        return response()->json($data);
     }
 }

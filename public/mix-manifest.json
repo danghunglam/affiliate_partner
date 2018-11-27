@@ -1,6 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/custom.min.css": "/css/custom.min.css",
+    "/js/home.min.js": "/js/home.min.js",
+    "/js/create_link.min.js": "/js/create_link.min.js",
     "/css/bootstrap.min.css": "/css/bootstrap.min.css",
     "/css/all.min.css": "/css/all.min.css",
     "/css/dataTables.bootstrap4.css": "/css/dataTables.bootstrap4.css",
@@ -13,6 +16,5 @@
     "/js/dataTables.bootstrap4.js": "/js/dataTables.bootstrap4.js",
     "/js/sb-admin.min.js": "/js/sb-admin.min.js",
     "/js/datatables-demo.js": "/js/datatables-demo.js",
-    "/js/chart-bar-demo.js": "/js/chart-bar-demo.js",
-    "/js/create_link.min.js": "/js/create_link.min.js"
+    "/js/chart-bar-demo.js": "/js/chart-bar-demo.js"
 }

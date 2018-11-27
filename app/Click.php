@@ -2,11 +2,10 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Click extends Model
 {
     use Notifiable;
 
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'name', 'email', 'partner', 'password', 'payout_type', 'payout_email'
+        'campaign_id', 'click'
     ];
 
     /**
@@ -25,12 +24,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','payout_email'
+
     ];
 
     public function campaign(){
-        return $this->hasMany('App\Campaign', 'user_id','id');
+        return $this->belongsTo('App\Campaign','campaign_id', 'id');
     }
-
-
 }

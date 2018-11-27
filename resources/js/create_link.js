@@ -23,10 +23,6 @@ new Vue({
                 }
             })
     },
-    mounted:function(){
-
-
-    },
     methods: {
         addLink: function () {
             let _this = this
@@ -45,7 +41,6 @@ new Vue({
                 medium: _this.medium
             })
                 .then(function (res) {
-                    console.log(res.data)
                     if(res.data){
                         notify('success', 'Created')
                     }else{
@@ -55,6 +50,8 @@ new Vue({
         },
 
         copyClipboard: function(event) {
+            this.save()
+
             var $temp = $("<input>");
             $("body").append($temp);
             $temp.val($('#link').val()).select();

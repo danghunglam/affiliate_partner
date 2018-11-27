@@ -39,6 +39,11 @@
     <!-- Custom styles for this template-->
     <link href="{{ mix('css/sb-admin.css') }}" rel="stylesheet">
 
+    <link href="{{ mix('css/custom.min.css') }}" rel="stylesheet">
+
+    {{--datetimepicker--}}
+    <script src="{{ URL::asset('bower_component/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"></script>
+
     <script>
         window.appUrl = "{{ url('') }}";
     </script>

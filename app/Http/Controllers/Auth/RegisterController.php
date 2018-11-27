@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Campaign;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,15 +67,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        session(['email' => $data['email']]);
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'name' => $data['first_name'] . ' ' . $data['last_name'],
-            'email' => $data['email'],
-            'payout_email' => $data['email'],
-            'partner' => str_random(20).time(),
-            'password' => Hash::make($data['password']),
-        ]);
+        try{
+            DB::beginTransaction();
+            $user =  User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'name' => $data['first_name'] . ' ' . $data['last_name'],
+                'email' => $data['email'],
+                'payout_email' => $data['email'],
+                'partner' => str_random(20).time(),
+                'password' => Hash::make($data['password']),
+            ]);
+            if($user){
+
+                Campaign::create([
+                    'custom_url'=>config('create_link.custom_link') . $user->partner,
+                    'campaign'=>'default',
+                    'source'=>'',
+                    'medium'=>'',
+                    'user_id'=>$user->id
+                ]);
+
+                DB::commit();
+                session(['email' => $data['email']]);
+                return $user;
+            }
+        }catch (\Exception $ex){
+            DB::rollBack();
+            return false;
+        }
+
     }
 }

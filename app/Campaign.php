@@ -34,4 +34,8 @@ class Campaign extends Model
     public function statistical(){
         return $this->hasMany('App\Statistical', 'campaign_id','id');
     }
+
+    public function click(){
+        return $this->hasMany('App\Click', 'campaign_id','id');
+    }
 }

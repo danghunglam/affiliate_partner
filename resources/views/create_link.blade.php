@@ -47,11 +47,11 @@
 
                     </div>
                 </div>
-                <div class="col-md-12 form-group">
-                    <div class="form-label-group">
-                        <button type="button" class="btn btn-secondary btn-lg" @click="save()" style="float: right">Save</button>
-                    </div>
-                </div>
+                {{--<div class="col-md-12 form-group">--}}
+                    {{--<div class="form-label-group">--}}
+                        {{--<button type="button" class="btn btn-secondary btn-lg" @click="save()" style="float: right">Save</button>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

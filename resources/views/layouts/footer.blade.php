@@ -19,7 +19,12 @@
 <!-- Custom scripts for all pages-->
 <script src="{{ mix('js/sb-admin.min.js') }}"></script>
 
-<!-- Demo scripts for this page-->
-<script src="{{ mix('js/datatables-demo.js') }}"></script>
+{{--<!-- Demo scripts for this page-->--}}
+{{--<script src="{{ mix('js/datatables-demo.js') }}"></script>--}}
+
+{{--momen--}}
+<script src="{{ URL::asset('bower_component/moment/min/moment.min.js') }}"></script>
+{{--datetimepicker--}}
+<script src="{{ URL::asset('bower_component/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
 
 @yield('footer_extend')

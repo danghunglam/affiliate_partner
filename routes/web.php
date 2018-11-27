@@ -24,3 +24,9 @@ Route::get('/getCampaigns', 'HomeController@getCampaigns')->name('get_link');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::post('/update', 'HomeController@update')->name('update');
 Route::post('/saveCampaign','HomeController@saveCampaign')->name('save_campaign');
+
+Route::get('/unique_click', 'HomeController@uniqueClick')->name('campaign_click');
+Route::get('/trial_signup', 'HomeController@trialSignup')->name('trial_signup');
+Route::get('/paid_conversion', 'HomeController@paidConversion')->name('paid_conversion');
+Route::get('/earning', 'HomeController@earning')->name('earning');
+Route::get('/report_all', 'HomeController@reportAll')->name('report_all');
